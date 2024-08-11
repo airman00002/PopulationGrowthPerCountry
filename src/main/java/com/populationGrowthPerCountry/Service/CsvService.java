@@ -3,6 +3,7 @@ package com.populationGrowthPerCountry.Service;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -14,12 +15,23 @@ import com.populationGrowthPerCountry.Model.Populations;
 @Service
 public class CsvService {
 
-    public List<PopulationGrowthPerCountryModel> getPopulationGrowthPerCountry() {
+    // intialize response
+    List<PopulationGrowthPerCountryModel> listModel = new ArrayList<>();
 
-        // intialize response
-        List<PopulationGrowthPerCountryModel> listModel = new ArrayList<>();
-        ClassPathResource resource = new ClassPathResource("inputFile/population-and-demography.csv");
+    @PostConstruct
+    public void init() {
+        try {
+            ClassPathResource resource = new ClassPathResource("inputFile/population-and-demography.csv");
+            readCSVFile(resource);
 
+        } catch (Exception e) {
+            System.err.println("Path Error ❌");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void readCSVFile(ClassPathResource resource) {
         // try-with-resource
         try (InputStreamReader reader = new InputStreamReader(resource.getInputStream());
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.builder().setHeader().build())) {
@@ -62,6 +74,9 @@ public class CsvService {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    public List<PopulationGrowthPerCountryModel> getPopulationGrowthPerCountry() {
         return listModel;
     }
 
