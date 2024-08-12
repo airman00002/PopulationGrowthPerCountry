@@ -8,8 +8,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class PopulationGrowthPerCountryModel {
     private String countryName;
+    private String region;
     private Integer year;
-    private Populations populations;
+    private Long totalPopulation;
 
 }
     

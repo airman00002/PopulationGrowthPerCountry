@@ -18,7 +18,9 @@ public class PopulationController {
     @GetMapping("/populationGrowthPerCountry")
     public ResponseEntity<List<PopulationGrowthPerCountryModel>> getPopulation() {
 
+        System.out.println("================== Call Population Service =================");
         List<PopulationGrowthPerCountryModel> response = csvService.getPopulationGrowthPerCountry();
+        // System.out.println(response.size());
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
     
