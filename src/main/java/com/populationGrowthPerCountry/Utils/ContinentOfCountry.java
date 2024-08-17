@@ -1,4 +1,4 @@
-package com.populationGrowthPerCountry.Constant;
+package com.populationGrowthPerCountry.Utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +104,9 @@ public class ContinentOfCountry {
 
         // Get All countryName
         public List<String> getCounties() {
-                return continentCountries.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+                return continentCountries.values().stream()
+                                .flatMap(Collection::stream)
+                                .collect(Collectors.toList());
         }
 
         // Check Country Existing in Continent
@@ -116,7 +118,8 @@ public class ContinentOfCountry {
 
         public String findContinentOfCountry(String inputCountry) {
 
-                return continentCountries.entrySet().stream().filter(entry -> entry.getValue().contains(inputCountry))
+                return continentCountries.entrySet().stream()
+                                .filter(entry -> entry.getValue().contains(inputCountry))
                                 .map(Map.Entry::getKey).findFirst().orElse("None");
         }
 }

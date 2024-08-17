@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import com.populationGrowthPerCountry.Constant.ContinentOfCountry;
 import com.populationGrowthPerCountry.Model.PopulationGrowthPerCountryModel;
+import com.populationGrowthPerCountry.Utils.ContinentOfCountry;
 
 @Service
 public class CsvService {
